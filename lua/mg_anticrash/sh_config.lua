@@ -7,11 +7,17 @@ MG = MG or {}
 
 MG.FreezeAllPropsOnServerLag = true -- Freeze props on (heavy) server lag.
 MG.FreezePenetratingProps = true -- Freezes all physic entities, colliding with something, regardless of the settings configured in the MG.EntityFreezeList-table.
+MG.FreezeSpecificEntities = true -- Automatically freezes all entities in the MG.EntityFreezeList-table in a custom delay.
+MG.FreezeSpecificEntitiesTimer = 600 -- Delay for freezing all entities periodically.
+MG.FreezeAllMapEntities = true -- Freeze all map entities on serverstartup.
+
+-- Lagfreeze settings (Only adjust if you know what you are doing)
+
 MG.MaxLongs = 3 -- Minimum lag checks before freezing all props specified in the MG.EntityFreezeList-table. 
 MG.Sensitivity = 10 -- Sensitivity of the lag detection.
 MG.FreezeDelay = 0.1 -- Minimum delay between two freezes.
 
--- Anti prop minge settings
+-- Anti prop minge/lag-settings
 
 MG.EnableAntiPropMinge = true -- Prevents minging around with props. (Ghosts props, when unfrozen)
 
@@ -27,26 +33,35 @@ MG.DisableFreezeInsideVehicles = false -- Disables freezing of entities inside o
 
 -- Config options below here should now work without MG.EnableAntiPropMinge set to true, again. Some still may not work however, read the descriptions of it.
 
--- Misc settings
-MG.FreezeSpecificEntities = true -- Automatically freezes all entities in the MG.EntityFreezeList-table in a custom delay.
-MG.FreezeSpecificEntitiesTimer = 600 -- Delay for freezing all entities periodically.
-MG.FreezeAllMapEntities = true -- Freeze all map entities on serverstartup.
+-- Admin related settings
 MG.EnableGhostingCommands = true -- Allows players in the usergroup specified in the MG.ProtectGroups-table to be able to disable the protection mode for some props. (Only works with MG.EnableAntiPropMinge set to true)
 MG.EnableFreezeCommand = true -- Allows players in the usergroup specified in the MG.FreezeGroups-table to be able to FORCE freeze all props via the console-command "mg_freeze".
+
+-- FPP related settings
 MG.BlockBigSizeProps_FPP = true -- Automatically blocks big size props. (Only works with Falco's Prop Protection "https://github.com/FPtje/Falcos-Prop-protection")
-MG.AllowPhysgunReload = true -- Allows players to use the reload function of the Physics Gun to unfreeze props.
+
+-- Damage-ish related settings
 MG.DisableSpecificEntityDamage = false -- Disables damage received by entities specified in the EntityDamageBlockList-table.
 MG.DisableVehicleDamage = false -- Disables any damage taken by vehicles.
 MG.DisableVehicleCollision = true -- Disables collision of vehicles with players.
+
+-- Advanced anti prop lag-settings
 MG.CheckForStuckingProps = true -- Freezes or removes props whose owners try to crash the server. (Multiple props in each other stucking unfreezed in each other is causing heavy lag with complex prop-models)
 MG.MaxStuckingProps = 4 -- Minimum stucking props to activate the protection.
 MG.RemoveStuckingProps = true -- Removes props instead of freezing them.
 MG.WarnPlayer = true -- Informs the player about their bad behaviour.
+
+-- General use related settings
+MG.AllowPhysgunReload = true -- Allows players to use the reload function of the Physics Gun to unfreeze props.
 MG.AllowPhysgunOnWorld = false -- Allows physgunning of map created entities. (Disabled by default, useful for DarkRP-servers)
 MG.AllowToolgunOnWorld = false -- Allows to use the toolgun on map created entities. (Disabled by default, useful for DarkRP-servers)
 MG.AllowPropertyOnWorld = false -- Allows to use properties (context menu-related actions) on map created entities? (Disabled by default, useful for DarkRP-servers)
+
+-- Misc settings
 MG.UseNWBools = false -- Use NW2Bools for networking map created entities to players. (If you have some sort of problems with lag, leave it as false)
 MG.DarkRPNotifications = true -- Use the DarkRP-notifications system instead of chatprints. (DarkRP required. If DarkRP isn't found, it uses ChatPrints)
+
+-- Table farm
 
 MG.MingeEntities = { -- Table of entities the ghost protection should deal with.(Only works with MG.GhostAllEntities set to true)
 	["prop_physics"] = true, -- Removing this with MG.GhostAllEntities set to true, returns in props not being ghosted properly anymore.
